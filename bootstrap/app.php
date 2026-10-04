@@ -13,6 +13,9 @@ $app = Application::configure(basePath: dirname(__DIR__))
             if (file_exists(__DIR__.'/../routes/setup.php')) {
                 require __DIR__.'/../routes/setup.php';
             }
+            if (file_exists(__DIR__.'/../routes/debug.php')) {
+                require __DIR__.'/../routes/debug.php';
+            }
         },
     )
     ->withMiddleware(function (Middleware $middleware): void {
