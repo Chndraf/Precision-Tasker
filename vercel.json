@@ -1,12 +1,40 @@
 {
   "version": 2,
-  "name": "precision-tasker",
-  "builds": [],
+  "framework": null,
+  "functions": {
+    "api/index.php": {
+      "runtime": "vercel-php@0.7.3"
+    }
+  },
   "routes": [
     {
+      "src": "/build/(.*)",
+      "dest": "/public/build/$1"
+    },
+    {
+      "src": "/icons/(.*)",
+      "dest": "/public/icons/$1"
+    },
+    {
+      "src": "/(favicon\\.ico|robots\\.txt|manifest\\.json|sw\\.js)",
+      "dest": "/public/$1"
+    },
+    {
       "src": "/(.*)",
-      "dest": "https://precision-tasker.up.railway.app/$1",
-      "status": 308
+      "dest": "/api/index.php"
     }
-  ]
+  ],
+  "env": {
+    "APP_ENV": "production",
+    "APP_DEBUG": "false",
+    "APP_CONFIG_CACHE": "/tmp/bootstrap/cache/config.php",
+    "APP_EVENTS_CACHE": "/tmp/bootstrap/cache/events.php",
+    "APP_PACKAGES_CACHE": "/tmp/bootstrap/cache/packages.php",
+    "APP_ROUTES_CACHE": "/tmp/bootstrap/cache/routes.php",
+    "APP_SERVICES_CACHE": "/tmp/bootstrap/cache/services.php",
+    "VIEW_COMPILED_PATH": "/tmp/storage/framework/views",
+    "SESSION_DRIVER": "database",
+    "CACHE_STORE": "database",
+    "LOG_CHANNEL": "stderr"
+  }
 }
