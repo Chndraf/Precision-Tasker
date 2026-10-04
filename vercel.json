@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "name": "precision-tasker",
+  "builds": [],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "https://precision-tasker.up.railway.app/$1",
+      "status": 308
+    }
+  ]
+}

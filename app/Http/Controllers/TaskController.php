@@ -22,10 +22,11 @@ class TaskController extends Controller
 
         if ($request->filled('sort')) {
             if ($request->sort === 'deadline') {
-                $query->orderByRaw('-deadline DESC'); // Handles nulls last
+                // PostgreSQL compatible: nulls last
+                $query->orderByRaw('deadline ASC NULLS LAST');
             } elseif ($request->sort === 'priority') {
-                // High -> Medium -> Low
-                $query->orderByRaw("FIELD(priority, 'High', 'Medium', 'Low')");
+                // PostgreSQL compatible: use CASE instead of FIELD
+                $query->orderByRaw("CASE priority WHEN 'High' THEN 1 WHEN 'Medium' THEN 2 WHEN 'Low' THEN 3 END");
             }
         } else {
             $query->latest();
