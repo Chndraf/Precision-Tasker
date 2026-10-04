@@ -27,7 +27,7 @@
 5. Extract info:
    - Host: `db.xxxxxxxxxxxxx.supabase.co`
    - Password: yang tadi dibuat
-
+postgresql://postgres:[buatPasswordKuat123!]@db.kokoixmydwpgtikofmbe.supabase.co:5432/postgres
 ---
 
 ### 2. Install Fly CLI (2 menit)
