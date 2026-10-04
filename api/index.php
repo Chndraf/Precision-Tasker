@@ -1,5 +1,19 @@
 <?php
 
+// Error handling untuk debugging
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
+// Cek apakah vendor/autoload.php ada
+if (!file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    http_response_code(500);
+    die(json_encode([
+        'error' => 'Composer dependencies not installed',
+        'message' => 'Run: composer install'
+    ]));
+}
+
 // Pastikan direktori writeable /tmp tersedia untuk Laravel di environment Vercel
 $storageDirs = [
     '/tmp/storage/framework/views',
@@ -25,4 +39,15 @@ putenv('APP_ROUTES_CACHE=/tmp/bootstrap/cache/routes.php');
 putenv('APP_SERVICES_CACHE=/tmp/bootstrap/cache/services.php');
 
 // Jalankan aplikasi Laravel via public/index.php
-require __DIR__ . '/../public/index.php';
+try {
+    require __DIR__ . '/../public/index.php';
+} catch (\Throwable $e) {
+    http_response_code(500);
+    echo json_encode([
+        'error' => 'Application Error',
+        'message' => $e->getMessage(),
+        'file' => $e->getFile(),
+        'line' => $e->getLine(),
+        'trace' => explode("\n", $e->getTraceAsString())
+    ], JSON_PRETTY_PRINT);
+}
