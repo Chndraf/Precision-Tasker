@@ -68,6 +68,7 @@ git push origin main
 php artisan key:generate --show
 ```
 Copy output (format: `base64:xxxxx...`)
+base64:XOnunq89dyFM/OPrQGbic/bJjTu2vLsvHLIHPJB0X/s=
 
 #### Step 2: Launch App
 ```bash
