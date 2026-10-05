@@ -151,32 +151,32 @@
     @endif
 
     <!-- Slide-out Modal for Create/Edit -->
-    <div x-show="showModal" class="fixed top-20 bottom-0 left-0 right-0 z-40 overflow-hidden" style="display: none;">
+    <div x-show="showModal" class="fixed inset-0 md:top-20 md:bottom-0 z-40 overflow-hidden" style="display: none;">
         <!-- Backdrop -->
         <div x-show="showModal" x-transition.opacity class="absolute inset-0 bg-background/80 backdrop-blur-sm" @click="showModal = false"></div>
 
         <!-- Panel -->
-        <div class="absolute inset-y-0 right-0 w-full max-w-md flex">
+        <div class="absolute inset-0 md:inset-y-0 md:right-0 md:left-auto w-full md:max-w-md flex">
             <div x-show="showModal" 
                  x-transition:enter="transform transition ease-in-out duration-300"
-                 x-transition:enter-start="translate-x-full"
-                 x-transition:enter-end="translate-x-0"
+                 x-transition:enter-start="translate-y-full md:translate-y-0 md:translate-x-full"
+                 x-transition:enter-end="translate-y-0 md:translate-x-0"
                  x-transition:leave="transform transition ease-in-out duration-300"
-                 x-transition:leave-start="translate-x-0"
-                 x-transition:leave-end="translate-x-full"
-                 class="w-full h-full glass-panel border-l border-outline-variant/20 shadow-2xl flex flex-col bg-surface"
+                 x-transition:leave-start="translate-y-0 md:translate-x-0"
+                 x-transition:leave-end="translate-y-full md:translate-y-0 md:translate-x-full"
+                 class="w-full h-full glass-panel md:border-l border-outline-variant/20 shadow-2xl flex flex-col bg-surface"
             >
-                <div class="h-20 px-6 border-b border-outline-variant/20 flex items-center justify-between shrink-0 bg-surface-container/50">
+                <div class="h-16 md:h-20 px-4 md:px-6 border-b border-outline-variant/20 flex items-center justify-between shrink-0 bg-surface-container/50">
                     <div>
-                        <h2 class="text-xl font-black text-on-surface" x-text="editMode ? '{{ __('app.editTask') }}' : '{{ __('app.newTask') }}'"></h2>
+                        <h2 class="text-lg md:text-xl font-black text-on-surface" x-text="editMode ? '{{ __('app.editTask') }}' : '{{ __('app.newTask') }}'"></h2>
                     </div>
                     <button @click="showModal = false" class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors">
                         <span class="material-symbols-outlined text-[20px]">close</span>
                     </button>
                 </div>
 
-                <div class="flex-1 overflow-y-auto no-scrollbar p-6">
-                    <form id="taskFormElement" method="POST" :action="editMode ? '{{ url('tasks') }}/' + taskForm.id : '{{ route('tasks.store') }}'" class="space-y-6">
+                <div class="flex-1 overflow-y-auto no-scrollbar p-4 md:p-6 pb-24 md:pb-6">
+                    <form id="taskFormElement" method="POST" :action="editMode ? '{{ url('tasks') }}/' + taskForm.id : '{{ route('tasks.store') }}'" class="space-y-4 md:space-y-6">
                         @csrf
                         <template x-if="editMode">
                             <input type="hidden" name="_method" value="PUT">
@@ -225,11 +225,11 @@
                     </form>
                 </div>
 
-                <div class="p-6 border-t border-outline-variant/20 bg-surface-container/50 shrink-0 flex gap-3">
-                    <button @click="showModal = false" class="flex-1 h-12 rounded-xl border border-outline-variant/30 text-on-surface-variant font-bold hover:bg-surface-container-high transition-colors">
+                <div class="p-4 md:p-6 border-t border-outline-variant/20 bg-surface-container/50 shrink-0 flex gap-3 sticky bottom-0 safe-bottom">
+                    <button @click="showModal = false" class="flex-1 h-12 rounded-xl border border-outline-variant/30 text-on-surface-variant font-bold hover:bg-surface-container-high active:bg-surface-container-high transition-colors">
                         {{ __('app.cancel') }}
                     </button>
-                    <button onclick="document.getElementById('taskFormElement').submit()" class="flex-1 h-12 ether-gradient text-on-primary font-bold rounded-xl shadow-lg shadow-primary/20 hover:opacity-90 transition-opacity">
+                    <button onclick="document.getElementById('taskFormElement').submit()" class="flex-1 h-12 ether-gradient text-on-primary font-bold rounded-xl shadow-lg shadow-primary/20 hover:opacity-90 active:scale-95 transition-all">
                         {{ __('app.save') }}
                     </button>
                 </div>
