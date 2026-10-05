@@ -1,4 +1,4 @@
-<div class="w-[280px] h-screen glass-panel border-r border-outline-variant/20 flex flex-col z-20 sticky top-0 animate-slide-in-right origin-left">
+<div class="hidden md:flex w-[280px] h-screen glass-panel border-r border-outline-variant/20 flex-col z-20 sticky top-0 animate-slide-in-right origin-left">
     <!-- Header -->
     <div class="p-6">
         <div class="flex items-center gap-3 px-2 mb-8">

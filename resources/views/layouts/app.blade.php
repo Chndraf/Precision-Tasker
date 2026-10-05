@@ -40,17 +40,21 @@
         <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-tertiary-container/5 rounded-full blur-[120px]"></div>
     </div>
 
+    <!-- Sidebar for Desktop -->
     @include('components.sidebar')
 
     <div class="flex-1 flex flex-col h-screen relative w-full overflow-hidden">
         @include('components.top-navbar')
 
-        <main class="flex-1 overflow-y-auto no-scrollbar pb-12 pt-6 w-full animate-fade-in relative scroll-smooth">
-            <div class="max-w-[1600px] mx-auto px-6 lg:px-12 w-full">
+        <main class="flex-1 overflow-y-auto no-scrollbar pb-4 md:pb-12 pt-4 md:pt-6 w-full animate-fade-in relative scroll-smooth">
+            <div class="max-w-[1600px] mx-auto px-4 md:px-6 lg:px-12 w-full mb-20 md:mb-0">
                 @yield('content')
             </div>
         </main>
     </div>
+
+    <!-- Bottom Navigation for Mobile -->
+    @include('components.bottom-navbar')
 
     {{-- Service Worker --}}
     <script>
