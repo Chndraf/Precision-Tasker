@@ -175,7 +175,7 @@
                     </button>
                 </div>
 
-                <div class="flex-1 overflow-y-auto no-scrollbar p-4 md:p-6 pb-24 md:pb-6">
+                <div class="flex-1 overflow-y-auto no-scrollbar p-4 md:p-6 pb-32 md:pb-6">
                     <form id="taskFormElement" method="POST" :action="editMode ? '{{ url('tasks') }}/' + taskForm.id : '{{ route('tasks.store') }}'" class="space-y-4 md:space-y-6">
                         @csrf
                         <template x-if="editMode">
